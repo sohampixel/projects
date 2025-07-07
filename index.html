@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yogita Pardeshi - AI Project Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .project {
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-left: 6px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .project:nth-child(2) {
+            border-left-color: #e74c3c;
+        }
+
+        .project:nth-child(3) {
+            border-left-color: #f39c12;
+        }
+
+        .project-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-title .emoji {
+            font-size: 1.2em;
+        }
+
+        .project-section {
+            margin-bottom: 20px;
+        }
+
+        .project-section h3 {
+            color: #34495e;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-section h4 {
+            color: #2c3e50;
+            margin: 15px 0 10px;
+            font-size: 1.05em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-section h3 .emoji,
+        .project-section h4 .emoji {
+            font-size: 1em;
+        }
+
+        .project-section p, .project-section ul {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .project-section ul {
+            padding-left: 20px;
+        }
+
+        .project-section li {
+            margin-bottom: 5px;
+        }
+
+        .link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .link:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        .phone-link {
+            color: #27ae60;
+            text-decoration: none;
+            font-weight: 500;
+            background: #ecf0f1;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background 0.3s ease;
+        }
+
+        .phone-link:hover {
+            background: #d5dbdb;
+        }
+
+        .email-link {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: 500;
+            background: #ecf0f1;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background 0.3s ease;
+        }
+
+        .email-link:hover {
+            background: #d5dbdb;
+        }
+
+        .workflow-step {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .workflow-step::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            width: 20px;
+            height: 20px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .workflow-container {
+            counter-reset: step-counter;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .tool-item {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .project {
+                padding: 20px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Yogita Pardeshi</h1>
+            <p>AI Project Portfolio</p>
+        </div>
+
+        <div class="content">
+            <div class="project">
+                <h2 class="project-title">
+                    <span class="emoji">💪</span>
+                    Project 1: Gym Routine Suggester
+                </h2>
+
+                <div class="project-section">
+                    <h3><span class="emoji">🔗</span>Link to Project:</h3>
+                    <p><a href="https://tinyurl.com/4r8up5ph" class="link" target="_blank">https://tinyurl.com/4r8up5ph</a></p>
+                </div>
+
+                <div class="project-section">
+                    <h3><span class="emoji">📝</span>Short Description:</h3>
+                    <p>A personalized gym routine generator that asks the user for the time they have and which muscle they want to target. It then sends a customized workout plan to their email.</p>
+                </div>
+
+                <div class="project-section">
+                    <h3><span class="emoji">🧰</span>Tools Used:</h3>
+                    <div class="tools-grid">
+                        <div class="tool-item">Relevance AI – user interface + workflow</div>
+                        <div class="tool-item">ChatGPT-4o – LLM for generating workouts</div>
+                        <div class="tool-item">Gmail API – sends workout via email</div>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h3><span class="emoji">⚙️</span>Workflow:</h3>
+                    <div class="workflow-container" style="counter-reset: step-counter;">
+                        <div class="workflow-step">User fills out a form with time, target muscle, and email.</div>
+                        <div class="workflow-step">ChatGPT-4o generates a workout routine.</div>
+                        <div class="workflow-step">Routine is automatically mailed to the user.</div>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h3><span class="emoji">💡</span>Example Inputs to Try:</h3>
+                    <ul>
+                        <li>"Chest in 45 minutes"</li>
+                        <li>"Legs in 30 mins"</li>
+                        <li>"Back in 1 hour"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project">
+                <h2 class="project-title">
+                    <span class="emoji">🏥</span>
+                    Project 2: WhatsApp Chatbot for Urban Hospital
+                </h2>
+
+                <div class="project-section">
+                    <h3><span class="emoji">📱</span>Try it Yourself:</h3>
+                    <p>Send a "Hi" to <a href="tel:+917665725621" class="phone-link">+91 76657 25621</a></p>
+                </div>
+
+                <div class="project-section">
+                    <h3><span class="emoji">📝</span>Short Description:</h3>
+                    <p>A WhatsApp-based virtual assistant for a hospital. It lets users check clinic info, view doctor availability, and book appointments—all through chat.</p>
+                </div>
+
+                <div class="project-section">
+                    <h3><span class="emoji">🧰</span>Tools Used:</h3>
+                    <div class="tools-grid">
+                        <div class="tool-item">WhatsApp Business API</div>
+                        <div class="tool-item">Sendwo – to automate and manage flows</div>
+                        <div class="tool-item">ChatGPT – for interactive responses</div>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h3><span class="emoji">⚙️</span>Workflow:</h3>
+                    <div class="workflow-container" style="counter-reset: step-counter;">
+                        <div class="workflow-step">User sends a message ("Hi") to the number.</div>
+                        <div class="workflow-step">Bot shows options: Book Appointment, Clinic Info, Doctor List.</div>
+                        <div class="workflow-step">Based on department selection, it shows available doctors with timings.</div>
+                        <div class="workflow-step">User selects date, time, and confirms the appointment.</div>
+                        <div class="workflow-step">Confirmation message is sent.</div>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h3><span class="emoji">🗓️</span>Sample Features:</h3>
+                    <div class="highlight-box">
+                        <ul>
+                            <li><strong>Clinic Timings:</strong> Mon–Sat, 9AM–6PM (Closed on Sundays)</li>
+                            <li><strong>Doctor Timings:</strong>
+                                <ul>
+                                    <li>Monday: Dr. Sakshi Sawant (10AM–11AM)</li>
+                                    <li>Tuesday: Dr. Anjali Nair (11AM–12PM)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Departments:</strong> General Physician, Dentist, Dermatologist</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project">
+                <h2 class="project-title">
+                    <span class="emoji">🛍️</span>
+                    Project 3: Gmail-Based Customer Support for urban heritage (clothing brand)
+                </h2>
+
+                <div class="project-section">
+                    <h3><span class="emoji">📧</span>Try it Yourself:</h3>
+                    <p>Send an email to <a href="mailto:urbanheritage.me@gmail.com" class="email-link">urbanheritage.me@gmail.com</a></p>
+                    <p><strong>📝 Write your query in the message body, not in the subject line.</strong></p>
+                </div>
+
+                <div class="project-section">
+                    <h3><span class="emoji">📝</span>Short Description:</h3>
+                    <p>An intelligent support system that reads customer queries from Gmail, searches company policies stored in Google Drive, and sends a smart reply automatically.</p>
+                </div>
+
+                <div class="project-section">
+                    <h3><span class="emoji">🧰</span>Tools Used:</h3>
+                    <div class="tools-grid">
+                        <div class="tool-item">n8n – automation engine</div>
+                        <div class="tool-item">Google Drive – for storing policies</div>
+                        <div class="tool-item">Qdrant – vector database for semantic search</div>
+                        <div class="tool-item">Nomic-embed-text – for generating embeddings</div>
+                        <div class="tool-item">DeepSeek R1 – LLM for crafting human-like replies</div>
+                        <div class="tool-item">Gmail – to receive and reply to emails</div>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h3><span class="emoji">⚙️</span>Workflow:</h3>
+                    
+                    <h4><span class="emoji">🔁</span>Flow 1: Update Policy Knowledgebase</h4>
+                    <div class="workflow-container" style="counter-reset: step-counter;">
+                        <div class="workflow-step">Monitors Google Drive for policy updates</div>
+                        <div class="workflow-step">Extracts content, creates vector embeddings</div>
+                        <div class="workflow-step">Stores updated content in Qdrant DB</div>
+                    </div>
+
+                    <h4><span class="emoji">📩</span>Flow 2: Handle Customer Emails</h4>
+                    <div class="workflow-container" style="counter-reset: step-counter;">
+                        <div class="workflow-step">Detects new email in Gmail</div>
+                        <div class="workflow-step">Extracts message body and identifies intent</div>
+                        <div class="workflow-step">Searches Qdrant for most relevant content</div>
+                        <div class="workflow-step">DeepSeek R1 writes a context-aware response</div>
+                        <div class="workflow-step">Sends reply to the user via Gmail</div>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h3><span class="emoji">💡</span>Example Queries to Try:</h3>
+                    <ul>
+                        <li>"What's the return policy?"</li>
+                        <li>"How long does delivery take?"</li>
+                        <li>"I need contact info for Urban Heritage"</li>
+                        <li>"How to cancel an order?"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Yogita Pardeshi - AI Project Portfolio</p>
+        </div>
+    </div>
+</body>
+</html>
